@@ -1,0 +1,45 @@
+<head>
+    
+    <style>
+        .dropdown--root .dropdown--item:hover { color: blue; }
+
+        .page--root .dropdown--root .dropdown--item { color: red; }
+
+        .page--root:hover .dropdown--root .dropdown--item { color: green; } /* will not work */
+    </style>
+</head>
+
+<body>
+
+    <div class="page--root">
+        <div class="dropdown--root">
+            <!-- <ul class="dropdown--items">
+                <li class="dropdown--item"></li>
+                <li class="dropdown--item"></li>
+                <li class="dropdown--item"></li>
+            </ul> --><div id="overlay-1-origin"></div>
+        </div>
+    </div>
+
+    <div class="overlays">
+            
+        <div id=overlay-1-context style="position:absolute; visibility:hidden;">
+            <div class="page--root">
+                <div class="dropdown--root">
+
+                    <div id="overlay-1-target" style="position:fixed; visibility:visible;">
+                        <ul class="dropdown--items">
+                            <li class="dropdown--item"></li>
+                            <li class="dropdown--item"></li>
+                            <li class="dropdown--item"></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+

@@ -1,0 +1,1 @@
+export const combineCSSNot = notMatches => notMatches.map(match => `:not(${match})`).join('');
