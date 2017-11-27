@@ -47,5 +47,9 @@
   },
   "files": [
     "dist/src"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:wix/html-overlays.git"
+  }
 }
