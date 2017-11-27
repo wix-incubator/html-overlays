@@ -1,6 +1,6 @@
 {
-  "name": "html-overlay",
-  "version": "1.0.0",
+  "name": "html-overlays",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
