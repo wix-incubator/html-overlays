@@ -1,4 +1,4 @@
-import { waitFor, expect } from 'test-drive';
+import { waitFor, expect } from 'test-drive-react';
 import { DOMMirror, createHTML } from '../src';
 import { combineCSSNot } from '../test-kit';
 

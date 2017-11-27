@@ -1,22 +1,22 @@
 const glob = require('glob');
+// const { testGlob } = require('./package.json');
+// const testFiles = glob.sync(testGlob);
 
-const { testGlob } = require('./package.json');
-const testFiles = glob.sync(testGlob);
 module.exports = {
-    // devtool: 'source-map',
     devtool: 'eval',
     entry: {
-        // demos: ['./demo/index.tsx'],
-        tests: [...testFiles.map(fileName => `mocha-loader!${fileName}`)]
+        tests: ['core-js/shim', 'mocha-loader!./test/webpack.ts']
     },
     module: {
         rules: [
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader',
-                options: {
-                    compilerOptions: {
-                        "declaration": false
+                use: {
+                    loader: 'ts-loader',
+                    options: {
+                        compilerOptions: {
+                            "noEmit": false
+                        }
                     }
                 }
             }
@@ -27,9 +27,6 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        pathinfo: true
-    },
-    devServer: {
-        disableHostCheck: true
+            pathinfo: true
     }
 }

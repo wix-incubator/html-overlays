@@ -1,8 +1,7 @@
-import { expect, waitFor, selectDom } from 'test-drive';
+import { expect, waitFor, selectDom } from 'test-drive-react';
 import { OverlayManager, createHTML } from '../src';
 import { combineCSSNot } from '../test-kit';
-
-const OVERLAY_LAYERS_CLASS = `overlay-layers`;
+import {CONTENT_LAYERS_CLASS, OVERLAY_LAYERS_CLASS, PORTAL_ROOT_CLASS} from "../src/overlay-manager";
 
 describe('overlay manager', () => {
 
@@ -13,7 +12,9 @@ describe('overlay manager', () => {
     
             new OverlayManager(root);
     
-            expect(root.children[0]).to.match('.' + OVERLAY_LAYERS_CLASS);
+            expect(root.children[0]).to.match('.' + PORTAL_ROOT_CLASS);
+            expect(root.children[0].children[0]).to.match('.' + CONTENT_LAYERS_CLASS);
+            expect(root.children[0].children[1]).to.match('.' + OVERLAY_LAYERS_CLASS);
         });
     
         it('should be added after existing content', () => {
@@ -22,7 +23,7 @@ describe('overlay manager', () => {
             new OverlayManager(root);
     
             expect(root.children[0], 'existing child before').to.match('content');
-            expect(root.children[1], 'overlays wrapper after').to.match('.' + OVERLAY_LAYERS_CLASS);
+            expect(root.children[1],'overlays wrapper after').to.match('.' + PORTAL_ROOT_CLASS);
         });
 
     });
@@ -51,16 +52,27 @@ describe('overlay manager', () => {
         });
 
         it('should hide and disable any effect of structural ancestors & show only the overlay target', () => {
-            const expectedAncestorStyle = {position:'static', visibility:'hidden', transform:'unset', 'pointer-events':'none', width:0, height:0};
-            const root = createHTML('<div><content class="a b"><div class="x y"></div></content></div>');
+            const expectedAncestorStyle = {position:'static', visibility:'hidden', transform:'unset', 'pointer-events':'none', width:'0px', height:'0px'};
+            const root = createHTML('<div><content class="a b"><div class="x y" data-portal-open="true"></div></content></div>');
             const overlayContextSrc = root.querySelector('div')!;
             const om = new OverlayManager(root);
             
             const {layer, target} = om.createOverlay(overlayContextSrc);
 
             expect(layer.style, 'layer').to.contain(expectedAncestorStyle);
+            expect(overlayContextSrc.style, 'source hide').to.contain(expectedAncestorStyle);
             expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
-            expect((target as HTMLElement).style, 'target').to.contain(expectedAncestorStyle);
+            // expect((target as HTMLElement).style, 'target').to.contain({visibility:'visible'});
+        });
+
+        xit('should hide portal when prop open is false', () => {
+            const root = createHTML('<div><content><div data-portal-open="false"></div></content></div>');
+            const overlayContextSrc = root.querySelector('div')!;
+            const om = new OverlayManager(root);
+
+            const {target} = om.createOverlay(overlayContextSrc);
+
+            expect((target as HTMLElement).style, 'target').to.contain({visibility:'hidden'});
         });
 
     });

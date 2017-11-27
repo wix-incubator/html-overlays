@@ -1,6 +1,14 @@
 <head>
-    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet" />
     <style>
+        .page--root { width:60%; margin:0 auto; border:solid 1px red; }
+
+        .dropdown--root {width:180px; height:1em; border:solid 1px green; margin:10px;}
+
+        .dropdown--items { width:100%; height:100%; position:absolute; }
+
+        .dropdown--items { border:1px solid blue; }
+
         .dropdown--root .dropdown--item:hover { color: blue; }
 
         .page--root .dropdown--root .dropdown--item { color: red; }
@@ -13,11 +21,13 @@
 
     <div class="page--root">
         <div class="dropdown--root">
-            <!-- <ul class="dropdown--items">
-                <li class="dropdown--item"></li>
-                <li class="dropdown--item"></li>
-                <li class="dropdown--item"></li>
-            </ul> --><div id="overlay-1-origin"></div>
+            <ul role="portal-origin" prop-portal-tag="ul" class="dropdown--items" style="visibility:hidden;overflow:hidden;">
+                <!--
+                    <li class="dropdown--item"></li>
+                    <li class="dropdown--item"></li>
+                    <li class="dropdown--item"></li>
+                -->
+            </ul>
         </div>
     </div>
 
@@ -27,13 +37,11 @@
             <div class="page--root">
                 <div class="dropdown--root">
 
-                    <div id="overlay-1-target" style="position:fixed; visibility:visible;">
-                        <ul class="dropdown--items">
-                            <li class="dropdown--item"></li>
-                            <li class="dropdown--item"></li>
-                            <li class="dropdown--item"></li>
-                        </ul>
-                    </div>
+                    <ul role="portal-target" class="dropdown--items" style="position:fixed; visibility:visible;">
+                        <li class="dropdown--item"></li>
+                        <li class="dropdown--item"></li>
+                        <li class="dropdown--item"></li>
+                    </ul>
                     
                 </div>
             </div>
