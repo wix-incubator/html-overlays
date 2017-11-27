@@ -8,8 +8,10 @@
         ],
         "outDir": "dist",
         "noImplicitAny": false,
-        "sourceMap": false,
+        "sourceMap": true,
         "strict": true,
-        "jsx": "react"
+        "jsx": "react",
+        "declaration": true,
+        "inlineSources": true
     }
 }

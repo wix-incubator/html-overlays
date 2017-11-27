@@ -4,7 +4,7 @@ import { expect, waitFor, selectDom, ClientRenderer } from 'test-drive-react';
 import { OverlayManager} from '../src';
 import createHTML from "../src/create-html";
 
-interface PortalProps {
+export interface PortalProps {
     tagName: string;
     className?:string;
     style?:any;

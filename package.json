@@ -41,6 +41,8 @@
     "test-drive-react": "^0.8.1",
     "ts-loader": "^2.3.7",
     "ts-node": "^3.1.0",
+    "tslint": "^5.8.0",
+    "tslint-wix-react": "^6.0.3",
     "typescript": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.8.2"
