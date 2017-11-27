@@ -1,7 +1,7 @@
 {
   "name": "html-overlays",
   "version": "0.0.3",
-  "description": "",
+  "description": "create a portal that remembers where it came from (the bronx)",
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf ./dist",

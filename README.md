@@ -3,10 +3,10 @@
 HTML overlays clones a given a element (and its ancestors) under a different root.
 This allows correct styling to be applied to an element, even if not rendered under the same html sub-tree. 
 
-##Overlay Manager
+## Overlay Manager
 Manages the overlay layer using a given context.
 
-###createOverlay(overlayContext:Element)
+### createOverlay(overlayContext:Element)
 clones overlayContext onto a new layer.
 return overlayItem
 
