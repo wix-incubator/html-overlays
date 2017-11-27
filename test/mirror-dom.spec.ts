@@ -1,6 +1,6 @@
 import { waitFor, expect } from 'test-drive-react';
 import { DOMMirror, createHTML } from '../src';
-import { combineCSSNot } from '../test-kit';
+import {combineCSSNot} from "./utils";
 
 describe('mirror DOM', () => {
     

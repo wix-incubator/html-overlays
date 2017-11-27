@@ -5,7 +5,7 @@
   "main": "./dist/src/index.js",
   "scripts": {
     "clean": "rm -rf ./dist",
-    "build": "tsc -d --p tsconfig.publish.json",
+    "build": "tsc --p tsconfig.publish.json",
     "prepublish": "npm run build",
     "pretest": "npm run build",
     "test": "npm run test:browser",
