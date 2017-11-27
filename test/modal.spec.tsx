@@ -5,46 +5,6 @@ import { OverlayManager} from '../src';
 import createHTML from "../src/create-html";
 import {MyPortal} from "./react-e2e.spec";
 
-interface PortalProps {
-    tagName: string;
-    style?:any;
-    overlayManager:OverlayManager;
-}
-
-// class MyPortal extends React.Component<PortalProps,any>{
-//     // overlayManager;
-//     destroy;
-//
-//     constructor(props:PortalProps){
-//         super(props);
-//     }
-//
-//     render(){
-//         return this.renderRoot({visibility:'hidden'}, false);
-//     }
-//
-//     renderRoot(portalStyle, renderChildren) {
-//         let {tagName:TagName, style, children, ...rest} = this.props;
-//         return <TagName style={{...style, ...portalStyle}} {...rest}>{renderChildren ? children : null}</TagName>
-//     }
-//
-//     componentWillUnmount(){
-//         this.destroy && this.destroy();
-//     }
-//
-//     componentDidMount(){
-//         const root:HTMLElement = ReactDOM.findDOMNode(this);
-//         // create layer
-//         const {parentTarget,destroy} = this.props.overlayManager.createOverlay(root);
-//         this.destroy = destroy;
-//         //  render target into parentTarget
-//         const portalTarget = ReactDOM.unstable_renderSubtreeIntoContainer(this, this.renderRoot({visibility:'visible'}, true), parentTarget);
-//
-//         // ? let portalMng modify target ?
-//         // layout and stuff on portalTarget
-//     }
-// }
-
 xdescribe('React modal using react portal', () => {
     const clientRenderer = new ClientRenderer();
     let contentRoot:HTMLDivElement;
