@@ -1,6 +1,6 @@
 {
   "name": "html-overlays",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "create a portal that knows where it came from (the bronx)",
   "main": "index.js",
   "scripts": {
