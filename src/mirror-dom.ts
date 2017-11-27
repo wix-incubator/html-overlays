@@ -1,7 +1,7 @@
 export type Filter = (name:string, value:string) => boolean;
 
 export class DOMMirror {
-    private srcToMirrors = new WeakMap();
+    private srcToMirrors = new WeakMap<Element, Element[]>();
     private mirrorConfig = new WeakMap<Element, Element>();
     
     private observer = new MutationObserver((mutations) => {
@@ -17,7 +17,7 @@ export class DOMMirror {
                         clones.forEach(clone => {
                             const value = this.filter ? this.filter(name, newValue) : newValue;
                             if(value !== undefined) {
-                                clone.setAttribute(name, value);
+                                clone.setAttribute(name, value+"");
                             }
                         });
                     } else {
@@ -48,7 +48,7 @@ export class DOMMirror {
             }
         }
         this.mirrorConfig.set(mirrorNode, srcNode);
-        this.srcToMirrors.get(srcNode).push(mirrorNode);
+        this.srcToMirrors.get(srcNode)!.push(mirrorNode);
         this.observer.observe(srcNode, {attributes: true});
         return mirrorNode;
     }

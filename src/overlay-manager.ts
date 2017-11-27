@@ -66,7 +66,7 @@ export class OverlayManager {
         };
     }
 
-    private destroyPortal(id){
+    private destroyPortal(id:string){
         this.overlayLayer.removeChild(this.overlays[id].layer);
     }
 

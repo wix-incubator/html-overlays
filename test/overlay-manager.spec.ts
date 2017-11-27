@@ -1,6 +1,7 @@
 import { expect, waitFor, selectDom } from 'test-drive-react';
 import { OverlayManager, createHTML } from '../src';
 import {CONTENT_LAYERS_CLASS, OVERLAY_LAYERS_CLASS, PORTAL_ROOT_CLASS} from "../src/overlay-manager";
+import {combineCSSNot} from "./utils";
 
 describe('overlay manager', () => {
 

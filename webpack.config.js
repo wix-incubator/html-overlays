@@ -1,7 +1,3 @@
-const glob = require('glob');
-// const { testGlob } = require('./package.json');
-// const testFiles = glob.sync(testGlob);
-
 module.exports = {
     devtool: 'eval',
     entry: {
@@ -11,12 +7,10 @@ module.exports = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: {
-                    loader: 'ts-loader',
-                    options: {
-                        compilerOptions: {
-                            "noEmit": false
-                        }
+                loader: 'ts-loader',
+                options: {
+                    compilerOptions: {
+                        "declaration": false
                     }
                 }
             }

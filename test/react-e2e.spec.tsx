@@ -13,7 +13,7 @@ export interface PortalProps {
 
 export class MyPortal extends React.Component<PortalProps,any>{
     // overlayManager;
-    destroy;
+    destroy:()=>void;
 
     constructor(props:PortalProps){
         super(props);
@@ -23,7 +23,7 @@ export class MyPortal extends React.Component<PortalProps,any>{
         return this.renderRoot({visibility:'hidden'}, false);
     }
 
-    renderRoot(portalStyle, renderChildren) {
+    renderRoot(portalStyle:React.CSSProperties, renderChildren:boolean) {
         let {tagName:TagName, style, children, ...rest} = this.props;
         return <TagName style={{...style, ...portalStyle}} {...rest}>{renderChildren ? children : null}</TagName>
     }

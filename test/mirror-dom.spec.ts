@@ -28,8 +28,8 @@ describe('mirror DOM', () => {
 
         it('should allow custom filter for mirrored attributes', () => {
             const root = createHTML('<div id="x" a="1" data-x="2" onclick="3"></div>');
-            const filterAll = (name) => false;
-            const filterId = (name, value) => name !== 'id';
+            const filterAll = (name:string) => false;
+            const filterId = (name:string) => name !== 'id';
             const domMirrorFilterAll = new DOMMirror(filterAll);
             const domMirrorFilterID = new DOMMirror(filterId);
             
