@@ -24,4 +24,4 @@ const {layer,           // the cloned layer created (ancestors top)
 } = overlayManager.createOverlay(popup);
 
 destroy();
-```6(
+```
