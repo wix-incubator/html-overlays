@@ -7,10 +7,10 @@ This allows correct styling to be applied to an element, even if not rendered un
 Manages the overlay layer using a given context.
 
 ### createOverlay(overlayContext:Element)
-clones overlayContext onto a new layer.
-return overlayItem
+Clones overlayContext onto a new layer.
+It returns some useful stuff (see below)
 
-example:
+Example:
 ```ts
 //constructor creates the overlay layer which will house the clones:
 const overlayManager = new OverlayManager(document.body);
