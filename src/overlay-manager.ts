@@ -48,11 +48,6 @@ export class OverlayManager {
         overlayTop.setAttribute('style',hideStyle);
         overlayContext.setAttribute('style',hideStyle);
         //TODO should hide all the chain of ancestors
-        // if (overlayContext.getAttribute('data-portal-open')=='true'){
-        //     overlayTarget.setAttribute('style',`visibility:visible`);
-        // }else {
-        //     overlayTarget.setAttribute('style',`visibility:hidden`);
-        // }
 
         overlay.appendChild(overlayTop);
         this.overlayLayer.appendChild(overlay);
@@ -88,4 +83,7 @@ export class OverlayManager {
         return {overlayTop:prevMirror, overlayTarget};
     }
 
+    public removeSelf(){
+        this.root.removeChild(this.portalRoot);
+    }
 }

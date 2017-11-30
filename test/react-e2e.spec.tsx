@@ -48,19 +48,21 @@ export class MyPortal extends React.Component<PortalProps,any>{
 describe('e2e - react', () => {
     const clientRenderer = new ClientRenderer();
     let contentRoot:HTMLDivElement;
+    let overlayManager:OverlayManager;
     afterEach(() => clientRenderer.cleanup());
 
     beforeEach(()=> {
         contentRoot = createHTML('<div data-automation-id="content-root"></div>') as HTMLDivElement;
         document.body.appendChild(contentRoot);
+        overlayManager = new OverlayManager(contentRoot);
     });
 
     afterEach(()=>{
+        overlayManager.removeSelf();
         document.body.removeChild(contentRoot);
-    })
+    });
 
     it('should copy css to overlay layer', () => {
-        const overlayManager = new OverlayManager(contentRoot);
 
         const {select} = clientRenderer.render(<div className="out-of-portal">
             <style>{`
