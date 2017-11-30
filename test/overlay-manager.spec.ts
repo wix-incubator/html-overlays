@@ -91,6 +91,16 @@ describe('overlay manager', () => {
             expect(root, 'target').to.not.contain(`.${OVERLAY_LAYERS_CLASS} div.x.y`);
         });
 
+        it('should allow clear of portal root',()=>{
+            const root = createHTML('<div><content class="a b"><div class="x y"></div></content></div>');
+            const overlayContextSrc = root.querySelector('div')!;
+            const om = new OverlayManager(root);
+
+            om.createOverlay(overlayContextSrc);
+            om.removeSelf();
+
+            expect(root).to.not.contain(`.${PORTAL_ROOT_CLASS}`);
+        });
     });
 
 });
