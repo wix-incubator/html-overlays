@@ -63,6 +63,7 @@ describe('overlay manager', () => {
             expect(overlayContextSrc.style, 'source hide').to.contain(expectedAncestorStyle);
             expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
             expect(om.getPortalRoot().style, 'portal root styling').to.contain(expectedAncestorStyle);
+            // TODO should actually check that all ancestors are hidden
             // expect((target as HTMLElement).style, 'target').to.contain({visibility:'visible'});
         });
 
