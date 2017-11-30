@@ -9,6 +9,8 @@ export const OVERLAY_LAYERS_CLASS = `overlay-layers`;
 export const CONTENT_LAYERS_CLASS = `content-layer`;
 export const PORTAL_ROOT_CLASS = `portal-root`;
 
+const hideStyle = "position:static;visibility:hidden; transform:unset; pointer-events:none; width:0px; height:0px;";
+
 export class OverlayManager {
     private domMirror:DOMMirror = new DOMMirror(filterIdAndOn);
 
@@ -23,6 +25,7 @@ export class OverlayManager {
         this.portalRoot.appendChild(this.contentLayer);
         this.portalRoot.appendChild(this.overlayLayer); //Overlay should be after content
 
+        this.portalRoot.setAttribute('style',hideStyle);
         root.appendChild(this.portalRoot);
     }
 
@@ -34,9 +37,11 @@ export class OverlayManager {
         return this.contentLayer;
     }
 
-    public createOverlay(overlayContext:Element):OverlayItem {
-        const hideStyle = "position:static;visibility:hidden; transform:unset; pointer-events:none; width:0px; height:0px;";
+    getPortalRoot (){
+        return this.portalRoot;
+    }
 
+    public createOverlay(overlayContext:Element):OverlayItem {
         let id = overlayCounter++;
         const overlay = createHTML(`<div class="overlay" data-automation-id="overlay" style="${hideStyle}" data-overlay-id="${id}"></div>`);
         const {overlayTop, overlayTarget} = this.mirrorParentChain(overlayContext);
