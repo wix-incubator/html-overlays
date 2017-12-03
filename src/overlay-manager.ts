@@ -10,8 +10,8 @@ export const CONTENT_LAYERS_CLASS = `content-layer`;
 export const PORTAL_ROOT_CLASS = `portal-root`;
 
 const hideStyle = "visibility:hidden; transform:unset; pointer-events:none;width:0px; height:0px;";
-const layerStyle = hideStyle+"position:static";
-const rootStyle = hideStyle+"position:absolute;top:0px;left:0px";
+const layerStyle = hideStyle+"position:static;";
+const rootStyle = hideStyle+"position:absolute;top:0px;left:0px;";
 
 export class OverlayManager {
     private domMirror:DOMMirror = new DOMMirror(filterIdAndOn);
@@ -53,7 +53,7 @@ export class OverlayManager {
         }
 
         overlayTop.setAttribute('style',layerStyle);
-        overlayContext.setAttribute('style',layerStyle);
+        overlayContext.setAttribute('style',layerStyle+"display:none;");
         //TODO should hide all the chain of ancestors
 
         overlay.appendChild(overlayTop);

@@ -62,7 +62,7 @@ describe('overlay manager', () => {
             const {layer, target} = om.createOverlay(overlayContextSrc);
 
             expect(layer.style, 'layer').to.contain(expectedAncestorStyle);
-            expect(overlayContextSrc.style, 'source hide').to.contain(expectedAncestorStyle);
+            expect(overlayContextSrc.style, 'source hide').to.contain({...expectedAncestorStyle,display:'none'});
             expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
             expect(om.getPortalRoot().style, 'portal root styling').to.contain(expectedRootStyle);
             // TODO should actually check that all ancestors are hidden
