@@ -77,9 +77,11 @@ export class OverlayManager {
         let currentSource:Element|null = overlayContext;
         let prevMirror:Element|undefined;
         let overlayTarget:Element|undefined;
+
         while(currentSource && currentSource !== this.root){
             const mirror = this.domMirror.mirrorNode(currentSource);
             if(prevMirror){
+                mirror.setAttribute('style',layerStyle);
                 mirror.appendChild(prevMirror);
             } else {
                 overlayTarget = mirror;
