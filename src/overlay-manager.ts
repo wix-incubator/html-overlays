@@ -9,7 +9,9 @@ export const OVERLAY_LAYERS_CLASS = `overlay-layers`;
 export const CONTENT_LAYERS_CLASS = `content-layer`;
 export const PORTAL_ROOT_CLASS = `portal-root`;
 
-const hideStyle = "position:static;visibility:hidden; transform:unset; pointer-events:none; width:0px; height:0px;";
+const hideStyle = "visibility:hidden; transform:unset; pointer-events:none;width:0px; height:0px;";
+const layerStyle = hideStyle+"position:static";
+const rootStyle = hideStyle+"position:absolute;top:0px;left:0px";
 
 export class OverlayManager {
     private domMirror:DOMMirror = new DOMMirror(filterIdAndOn);
@@ -25,7 +27,7 @@ export class OverlayManager {
         this.portalRoot.appendChild(this.contentLayer);
         this.portalRoot.appendChild(this.overlayLayer); //Overlay should be after content
 
-        this.portalRoot.setAttribute('style',hideStyle);
+        this.portalRoot.setAttribute('style',rootStyle);
         root.appendChild(this.portalRoot);
     }
 
@@ -43,15 +45,15 @@ export class OverlayManager {
 
     public createOverlay(overlayContext:Element):OverlayItem {
         let id = overlayCounter++;
-        const overlay = createHTML(`<div class="overlay" data-automation-id="overlay" style="${hideStyle}" data-overlay-id="${id}"></div>`);
+        const overlay = createHTML(`<div class="overlay" data-automation-id="overlay" style="${layerStyle}" data-overlay-id="${id}"></div>`);
         const {overlayTop, overlayTarget} = this.mirrorParentChain(overlayContext);
         
         if(!overlayTop || !overlayTarget){
             throw new Error('create overlay fail');
         }
 
-        overlayTop.setAttribute('style',hideStyle);
-        overlayContext.setAttribute('style',hideStyle);
+        overlayTop.setAttribute('style',layerStyle);
+        overlayContext.setAttribute('style',layerStyle);
         //TODO should hide all the chain of ancestors
 
         overlay.appendChild(overlayTop);

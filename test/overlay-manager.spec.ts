@@ -52,7 +52,9 @@ describe('overlay manager', () => {
         });
 
         it('should hide and disable any effect of structural ancestors & show only the overlay target', () => {
-            const expectedAncestorStyle = {position:'static', visibility:'hidden', transform:'unset', 'pointer-events':'none', width:'0px', height:'0px'};
+            const hideStyle = {visibility:'hidden', transform:'unset', 'pointer-events':'none',width:'0px', height:'0px'};
+            const expectedAncestorStyle = {...hideStyle,position:'static'};
+            const expectedRootStyle = {...hideStyle,position:'absolute', top:'0px', left:'0px'};
             const root = createHTML('<div><content class="a b"><div class="x y" data-portal-open="true"></div></content></div>');
             const overlayContextSrc = root.querySelector('div')!;
             const om = new OverlayManager(root);
@@ -62,7 +64,7 @@ describe('overlay manager', () => {
             expect(layer.style, 'layer').to.contain(expectedAncestorStyle);
             expect(overlayContextSrc.style, 'source hide').to.contain(expectedAncestorStyle);
             expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
-            expect(om.getPortalRoot().style, 'portal root styling').to.contain(expectedAncestorStyle);
+            expect(om.getPortalRoot().style, 'portal root styling').to.contain(expectedRootStyle);
             // TODO should actually check that all ancestors are hidden
             // expect((target as HTMLElement).style, 'target').to.contain({visibility:'visible'});
         });
