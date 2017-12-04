@@ -9,9 +9,7 @@ export const OVERLAY_LAYERS_CLASS = `overlay-layers`;
 export const CONTENT_LAYERS_CLASS = `content-layer`;
 export const PORTAL_ROOT_CLASS = `portal-root`;
 
-const hideStyle = "visibility:hidden; transform:unset; pointer-events:none;width:0px; height:0px;";
-const layerStyle = hideStyle+"position:static;";
-const rootStyle = hideStyle+"position:absolute;top:0px;left:0px;";
+const hideStyle = "position:absolute;visibility:hidden; transform:unset; pointer-events:none;width:100%;height:100%;top:0;left:0;";
 
 export class OverlayManager {
     private domMirror:DOMMirror = new DOMMirror(filterIdAndOn);
@@ -27,7 +25,7 @@ export class OverlayManager {
         this.portalRoot.appendChild(this.contentLayer);
         this.portalRoot.appendChild(this.overlayLayer); //Overlay should be after content
 
-        this.portalRoot.setAttribute('style',rootStyle);
+        this.portalRoot.setAttribute('style',hideStyle);
         root.appendChild(this.portalRoot);
     }
 
@@ -45,16 +43,14 @@ export class OverlayManager {
 
     public createOverlay(overlayContext:Element):OverlayItem {
         let id = overlayCounter++;
-        const overlay = createHTML(`<div class="overlay" data-automation-id="overlay" style="${layerStyle}" data-overlay-id="${id}"></div>`);
+        const overlay = createHTML(`<div class="overlay" data-automation-id="overlay" style="${hideStyle}" data-overlay-id="${id}"></div>`);
         const {overlayTop, overlayTarget} = this.mirrorParentChain(overlayContext);
         
         if(!overlayTop || !overlayTarget){
             throw new Error('create overlay fail');
         }
 
-        overlayTop.setAttribute('style',layerStyle);
-        overlayContext.setAttribute('style',layerStyle+"display:none;");
-        //TODO should hide all the chain of ancestors
+        overlayContext.setAttribute('style',hideStyle+"display:none;");
 
         overlay.appendChild(overlayTop);
         this.overlayLayer.appendChild(overlay);
@@ -81,7 +77,7 @@ export class OverlayManager {
         while(currentSource && currentSource !== this.root){
             const mirror = this.domMirror.mirrorNode(currentSource);
             if(prevMirror){
-                mirror.setAttribute('style',layerStyle);
+                mirror.setAttribute('style',hideStyle); //hide chain except source
                 mirror.appendChild(prevMirror);
             } else {
                 overlayTarget = mirror;

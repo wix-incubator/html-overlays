@@ -3,8 +3,7 @@ import { OverlayManager, createHTML } from '../src';
 import {CONTENT_LAYERS_CLASS, OVERLAY_LAYERS_CLASS, PORTAL_ROOT_CLASS} from "../src/overlay-manager";
 import {combineCSSNot} from "./utils";
 
-const hideStyle = {visibility:'hidden', transform:'unset', 'pointer-events':'none',width:'0px', height:'0px'};
-const expectedAncestorStyle = {...hideStyle,position:'static'};
+const hideStyle = {visibility:'hidden', transform:'unset', 'pointer-events':'none',width:'100%', height:'100%',top:'0px',left:'0px',position:'absolute'};
 
 describe('overlay manager', () => {
 
@@ -55,19 +54,15 @@ describe('overlay manager', () => {
         });
 
         it('should hide and disable any effect of structural ancestors & show only the overlay target', () => {
-            const expectedRootStyle = {...hideStyle,position:'absolute', top:'0px', left:'0px'};
             const root = createHTML('<div><content class="a b"><div class="x y" data-portal-open="true"></div></content></div>');
             const overlayContextSrc = root.querySelector('div')!;
             const om = new OverlayManager(root);
             
             const {layer, target} = om.createOverlay(overlayContextSrc);
 
-            expect(layer.style, 'layer').to.contain(expectedAncestorStyle);
-            expect(overlayContextSrc.style, 'source hide').to.contain({...expectedAncestorStyle,display:'none'});
-            expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
-            expect(om.getPortalRoot().style, 'portal root styling').to.contain(expectedRootStyle);
-            // TODO should actually check that all ancestors are hidden
-            // expect((target as HTMLElement).style, 'target').to.contain({visibility:'visible'});
+            expect(layer.style, 'layer').to.contain(hideStyle);
+            expect(overlayContextSrc.style, 'source hide').to.contain({...hideStyle,display:'none'});
+            expect(om.getPortalRoot().style, 'portal root styling').to.contain(hideStyle);
         });
 
         it('should hide and disable any effect of all ancestors', () => {
@@ -83,10 +78,10 @@ describe('overlay manager', () => {
 
             const {layer, target} = om.createOverlay(overlayContextSrc);
 
-            expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
-            expect((layer.firstChild!.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
-            expect((layer.firstChild!.firstChild!.firstChild! as HTMLElement).style, 'ancestor').to.contain(expectedAncestorStyle);
-            expect((layer.firstChild!.firstChild!.firstChild!.firstChild! as HTMLElement).style, 'ancestor').not.to.contain(expectedAncestorStyle); //the span
+            expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(hideStyle);
+            expect((layer.firstChild!.firstChild! as HTMLElement).style, 'ancestor').to.contain(hideStyle);
+            expect((layer.firstChild!.firstChild!.firstChild! as HTMLElement).style, 'ancestor').to.contain(hideStyle);
+            expect((layer.firstChild!.firstChild!.firstChild!.firstChild! as HTMLElement).style, 'ancestor').not.to.contain(hideStyle); //the span
         });
 
         xit('should hide portal when prop open is false', () => {
