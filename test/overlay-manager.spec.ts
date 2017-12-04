@@ -1,6 +1,6 @@
 import { expect, waitFor, selectDom } from 'test-drive-react';
 import { OverlayManager, createHTML } from '../src';
-import {CONTENT_LAYERS_CLASS, OVERLAY_LAYERS_CLASS, PORTAL_ROOT_CLASS} from "../src/overlay-manager";
+import {CONTENT_LAYERS_CLASS, HIDE_PORTAL_STYLE, OVERLAY_LAYERS_CLASS, PORTAL_ROOT_CLASS} from "../src/overlay-manager";
 import {combineCSSNot} from "./utils";
 
 const hideStyle = {visibility:'hidden', transform:'unset', 'pointer-events':'none',width:'100%', height:'100%',top:'0px',left:'0px',position:'absolute'};
@@ -13,7 +13,8 @@ describe('overlay manager', () => {
             const root = createHTML('<div></div>');
     
             new OverlayManager(root);
-    
+
+            debugger;
             expect(root.children[0]).to.match('.' + PORTAL_ROOT_CLASS);
             expect(root.children[0].children[0]).to.match('.' + CONTENT_LAYERS_CLASS);
             expect(root.children[0].children[1]).to.match('.' + OVERLAY_LAYERS_CLASS);
@@ -60,9 +61,10 @@ describe('overlay manager', () => {
             
             const {layer, target} = om.createOverlay(overlayContextSrc);
 
-            expect(layer.style, 'layer').to.contain(hideStyle);
-            expect(overlayContextSrc.style, 'source hide').to.contain({...hideStyle,display:'none'});
-            expect(om.getPortalRoot().style, 'portal root styling').to.contain(hideStyle);
+            expect(layer.className, 'layer').to.contain(HIDE_PORTAL_STYLE);
+            // expect(overlayContextSrc.className, 'source hide').to.contain(HIDE_PORTAL_STYLE);
+            expect(overlayContextSrc.style, 'source hide').to.contain({display:'none'});
+            expect(om.getPortalRoot().className, 'portal root styling').to.contain(HIDE_PORTAL_STYLE);
         });
 
         it('should hide and disable any effect of all ancestors', () => {
@@ -78,10 +80,10 @@ describe('overlay manager', () => {
 
             const {layer, target} = om.createOverlay(overlayContextSrc);
 
-            expect((layer.firstChild! as HTMLElement).style, 'ancestor').to.contain(hideStyle);
-            expect((layer.firstChild!.firstChild! as HTMLElement).style, 'ancestor').to.contain(hideStyle);
-            expect((layer.firstChild!.firstChild!.firstChild! as HTMLElement).style, 'ancestor').to.contain(hideStyle);
-            expect((layer.firstChild!.firstChild!.firstChild!.firstChild! as HTMLElement).style, 'ancestor').not.to.contain(hideStyle); //the span
+            expect((layer.firstChild! as HTMLElement).className, 'ancestor').to.contain(HIDE_PORTAL_STYLE);
+            expect((layer.firstChild!.firstChild! as HTMLElement).className, 'ancestor').to.contain(HIDE_PORTAL_STYLE);
+            expect((layer.firstChild!.firstChild!.firstChild! as HTMLElement).className, 'ancestor').to.contain(HIDE_PORTAL_STYLE);
+            expect((layer.firstChild!.firstChild!.firstChild!.firstChild! as HTMLElement).className, 'ancestor').not.to.contain(HIDE_PORTAL_STYLE); //the span
         });
 
         xit('should hide portal when prop open is false', () => {
