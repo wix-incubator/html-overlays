@@ -1,1 +1,14 @@
 
+language: node_js
+
+node_js:
+  - 8
+
+addons:
+  sauce_connect:
+    username: "yiftachy@wix.com"
+  jwt:
+    secure: "btEJwgY1lGR01NsdrzQ+CrAxMGPVO1ErUQsx1g+a15gHLZo6Q8qnXpAVEBDQP3YvfDWZFfVDdGivk+K4Jj63CnZesZmiLfKL8lvzXB3Fot4JUj32kTw8Tp251wSIx1bO/OZhPi5D9FeZFUn+xIhOIkAuvOq1PPJ5XA7pK2qZCShISm7nqD/sbllKK2y0+vkUWtAT6Fh/PadHDb2aGzBhzqLq5sQ1gsZuiLEJIESAvMI2r7Jdd4zS4SDwZeKdwClnbqPKAQZrVakuh6iw9P3E7FrnTHm35Y2fRq5w1x9mhQiPCInrgxOQOsqEytuZX9YQs1qBZy7TeeCNJ9exajrt3338mFbmuj2EYVLDx+NgFVLqJcPT4Jznb0dqf7i40zvRx6fXvKgD1vOTGT2JbxYq4PZT+4NQjUO4/3h2cERwF7AH071ahzi32XisTN5V434AHgfwYLcrbfEd7TPAzcX3SE12qWXAgLPfxoYE6IcoH2O92E+QdDLH4KIDvaE69Akyc0dYrzvSdDgK4h/7bQJm31mGHqdy12NrHb5chFsVcmIQ+wxTOkzRCwAPsq9fJPJOC/6DMJ2vRFB2rY3Sf6fiYMlLceNkvYjhS3YrBP2m958qzz9GN5BBpdVskAPHUe4gvDjpqyrgVIFyQVK6BK3b/JH8LOOR8qLyv18bRFcMSOg="
+
+cache:
+  yarn: true
