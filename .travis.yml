@@ -4,10 +4,7 @@ node_js:
   - 8
   
 addons:
-  sauce_connect:
-    username: "deduck"
-  jwt:
-    secure: "bL5zYROe/b5FlIAm8MjebhN5WTey99X/weEHZKPf1CB/vAczP06YAkjh0ug2TEQN5wRx1eTDgp0SsqpUmp9MkByrP+ZCW3I9nwjzAFdkyQ/MgisSNQLhlV1CB7EK3/7c1lQvjy/ydk5alOsgL9sna8yPLppp9FHll5KysNzLvtZz+Me2wGM46gkVNfYJxwYRl6GSlhhKCr+5jEJWIzayvrjWGaAZ1L1W/zKAT0UpG9F8XvOn+pOAFxbHSPC+jmJGIZ+m0Wj92K/ToS2WBtLfjyXOXDuZgpG3hp8ISZOmxa+4ya0Am6Ht9g3FDLNNheIEZzjkaQTocOtscsfE7BI4oa/NBxvmpZy6VAFHFZlQQQb+MsrwUcLgLPUPg1EV3z+6L51uzsB1/U1lgNfrBxM0sWGEXFJKy0QGGaBszu2q3o4IGcPDfOdeEdHClc3x0k5ExHP/OyV9kxrgOwmzYuMHqWE+e/k0y1KieRyFKoZ96BRQHT9ap/NG1qha8nw6UjlI5rJDAhQtvV0+0FX6yhT8WLBLb5lzsmH4ju5sh7ZS+78yV9NIHylzFfDk0Rz05mP3Fm+GYB32CnXZKzXpNaZYvHy7+hqBdES9rTbi3llIV2r6odFGWpkSFpzkHHHA6udkUK7GHCmWoXZd6Ytk9v7+vyGlIe8hGSC4d+1+16zkwaA="
-  
+  sauce_connect: true
+     
 cache:
   yarn: true
