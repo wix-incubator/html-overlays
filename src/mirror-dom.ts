@@ -1,23 +1,23 @@
-export type Filter = (name:string, value:string) => boolean;
+export type Filter = (name: string, value: string) => boolean;
 
 export class DOMMirror {
     private srcToMirrors = new WeakMap<Element, Element[]>();
     private mirrorConfig = new WeakMap<Element, Element>();
-    
-    private observer = new MutationObserver((mutations) => {
+
+    private observer = new MutationObserver(mutations => {
         for (const mutation of mutations) {
-        switch(mutation.type){
+        switch (mutation.type) {
             case 'attributes':
                 const target = mutation.target as Element;
                 const name = mutation.attributeName;
                 const clones = this.srcToMirrors.get(target);
-                if(clones && name){
+                if (clones && name) {
                     const newValue = target.getAttribute(name);
-                    if(newValue){
+                    if (newValue) {
                         clones.forEach(clone => {
                             const value = this.filter ? this.filter(name, newValue) : newValue;
-                            if(value !== undefined) {
-                                clone.setAttribute(name, value+"");
+                            if (value !== undefined) {
+                                clone.setAttribute(name, value + '');
                             }
                         });
                     } else {
@@ -26,23 +26,23 @@ export class DOMMirror {
                 }
                 break;
             }
-        }    
+        }
     });
 
     constructor(
-        private filter?:Filter
-    ){}
+        private filter?: Filter
+    ) {}
 
-    public mirrorNode<T extends Element>(srcNode:T):T {
+    public mirrorNode<T extends Element>(srcNode: T): T {
         srcNode = this.getSource(srcNode) || srcNode;
-        if(!this.srcToMirrors.has(srcNode)){
+        if (!this.srcToMirrors.has(srcNode)) {
             this.srcToMirrors.set(srcNode, []);
         }
         const mirrorNode = srcNode.cloneNode() as T;
-        if(this.filter) {
+        if (this.filter) {
             const attrList = Array.from(mirrorNode.attributes);
-            for(const {name, value} of attrList) {
-                if(!this.filter(name, value)) {
+            for (const {name, value} of attrList) {
+                if (!this.filter(name, value)) {
                     mirrorNode.removeAttribute(name);
                 }
             }
@@ -53,8 +53,8 @@ export class DOMMirror {
         return mirrorNode;
     }
 
-    public getSource<T extends Element>(mirrorNode:Element | null):T|null {
+    public getSource<T extends Element>(mirrorNode: Element | null): T | null {
         const srcNode = mirrorNode && this.mirrorConfig.get(mirrorNode);
-        return srcNode ? <T>srcNode : null;
+        return srcNode ? srcNode as T : null;
     }
 }

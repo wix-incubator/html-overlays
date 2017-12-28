@@ -7,6 +7,8 @@
   "scripts": {
     "clean": "rimraf ./dist",
     "build": "tsc",
+    "lint": "tslint \"@(src|demo|test|test-kit)/**/*.ts?(x)\" -c tslint.json -p tsconfig.json",
+    "lint:fix": "tslint \"@(src|demo|test|test-kit)/**/*.ts?(x)\" --fix -c tslint.json -p tsconfig.json",
     "prepublish": "npm run build",
     "test": "npm run test:browser",
     "test:browser": "karma start --single-run",
