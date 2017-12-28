@@ -3,7 +3,7 @@ export default function createHTML(HTMLString: string): HTMLElement {// , ids:{[
     placeholder = placeholder || document.createElement('div');
     placeholder.innerHTML = HTMLString;
     const root = placeholder.firstChild;
-    placeholder.innerHTML = '';
+    // placeholder.innerHTML = '';
     if (root instanceof HTMLElement) {
         return root;
     } else {
