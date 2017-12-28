@@ -9,6 +9,6 @@ export default function createHTML(HTMLString: string): HTMLElement {// , ids:{[
     } else {
         throw new Error('error creating HTML: ' + HTMLString);
     }
-    // placeholder.querySelectorAll('[id]')
+    // placeholder.querySelenpctorAll('[id]')
     // const ids = .entries().reduce((acc, node) => {acc[node.id] = node; return acc;}, {});
 }
