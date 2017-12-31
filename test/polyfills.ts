@@ -4,7 +4,7 @@ import 'core-js/shim';
 // see https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
 if (!Element.prototype.matches) {
     const elemProto = Element.prototype as any;
-    Element.prototype =
+    Element.prototype.matches =
         elemProto.matchesSelector ||
         elemProto.mozMatchesSelector ||
         elemProto.msMatchesSelector ||
