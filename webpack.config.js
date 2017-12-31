@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     devtool: 'eval',
     entry: {
-        tests: ['core-js/shim', 'mocha-loader!./test/webpack.ts']
+        tests: ['./test/polyfills.ts','mocha-loader!./test/webpack.ts']
     },
     module: {
         rules: [
