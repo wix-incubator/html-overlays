@@ -1,9 +1,9 @@
-let placeholder:HTMLElement;
+
 export default function createHTML(HTMLString: string): HTMLElement {// , ids:{[s:string]:Node}
-    placeholder = placeholder || document.createElement('div');
+    let placeholder:HTMLElement;
+    placeholder = document.createElement('div');
     placeholder.innerHTML = HTMLString;
     const root = placeholder.firstChild;
-    placeholder.innerHTML = '';
     if (root instanceof HTMLElement) {
         return root;
     } else {

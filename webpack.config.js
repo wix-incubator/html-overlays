@@ -1,7 +1,9 @@
+const path = require('path');
+
 module.exports = {
     devtool: 'eval',
     entry: {
-        tests: ['core-js/shim', 'mocha-loader!./test/webpack.ts']
+        tests: ['./test/polyfills.ts','mocha-loader!./test/webpack.ts']
     },
     module: {
         rules: [
@@ -12,6 +14,20 @@ module.exports = {
                     compilerOptions: {
                         "declaration": false
                     }
+                }
+            },
+            {
+                test: /\.js$/,
+                include: [
+                    path.dirname(require.resolve('chai-as-promised')),
+                    path.dirname(require.resolve('chai-style')),
+                    path.join(__dirname, 'node_modules', 'webpack-dev-server', 'client')
+                ],
+                loader: 'ts-loader',
+                options: {
+                    // needed so it has a separate transpilation instance
+                    instance: 'lib-compat',
+                    transpileOnly: true
                 }
             }
         ]
