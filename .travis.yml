@@ -5,6 +5,7 @@ node_js:
   
 addons:
   sauce_connect: true
+  chrome: stable
      
 cache:
   yarn: true
