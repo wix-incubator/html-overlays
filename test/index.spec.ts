@@ -20,6 +20,7 @@ describe('e2e', () => {
         expect(portalContent).to.have.style('color', 'green');
 
         destroy();
+        rootOverlay.removeSelf();
         document.body.removeChild(root);
     });
 });
