@@ -1,4 +1,4 @@
-import 'polyfills';
+import './polyfills';
 // https://webpack.js.org/guides/dependency-management/#require-context
 // the following is used an an entry point for karma (that runs karma-webpack)
 
