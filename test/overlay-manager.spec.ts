@@ -91,16 +91,6 @@ describe('overlay manager', () => {
                 'ancestor'
             ).not.to.contain(HIDE_PORTAL_STYLE); // the span
         });
-
-        xit('should hide portal when prop open is false', () => {
-            const root = createHTML('<div><content><div data-portal-open="false"></div></content></div>');
-            const overlayContextSrc = root.querySelector('div')!;
-            const om = new OverlayManager(root);
-
-            const {target} = om.createOverlay(overlayContextSrc);
-
-            expect((target as HTMLElement).style, 'target').to.contain({visibility: 'hidden'});
-        });
     });
 
     describe('destroyOverlay', () => {
