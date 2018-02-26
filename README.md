@@ -24,3 +24,14 @@ const {layer,           // the cloned layer created (ancestors top)
 
 destroy();
 ```
+
+## Test
+
+- run `yarn` (or `npm`)
+
+either:
+- run `yarn start`
+- go to [localhost:8080/tests](http://localhost:8080/tests)
+
+or 
+- run `yarn test` 
